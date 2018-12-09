@@ -62,7 +62,7 @@ int main() {
         }
     }
     completeSearch(0, 0, D[0][0], 0);
-    if (ans != -1) cout << -1 << endl;
+    if (ans == INF) cout << -1 << endl;
     else cout << ans << endl;
     return 0;
 }
