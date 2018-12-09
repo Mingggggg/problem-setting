@@ -26,7 +26,7 @@ typedef pair<int,int> PII;
 #define fst first
 #define snd second
 
-const int INF = (int)1e9;
+const ll INF = (int)1e18;
 const int mod = 1000000007;
 #define MAXN 101
 #define MAXS 1001
@@ -35,20 +35,20 @@ const int mod = 1000000007;
 int D[MAXN][MAXN], W[MAXN][MAXN];
 int dp[MAXN][MAXN][MAXS];
 int n, m, K;
-int ans = INF;
+ll ans = INF;
 int directions[2][4] = {
     {-1, 1, 0, 0},
     {0, 0, -1, 1}
 };
 
-int minDist(int r, int c, int k) {
+ll minDist(int r, int c, int k) {
     if (k < 0) return INF;
     if (r == 0 && c == 0) return 0;
     if (r < 0 || c < 0 || r >= n || c >= m) return INF;
     if (dp[r][c][k] != -1) return dp[r][c][k];
     dp[r][c][k] = INF;
     for (int i=0; i < 4; i++) {
-        dp[r][c][k] = min(dp[r][c][k], D[r][c] + 
+        dp[r][c][k] = min((ll) dp[r][c][k], (ll) D[r][c] + 
             minDist(r+directions[0][i], c+directions[1][i], k-W[r][c]));
     }
     return dp[r][c][k];

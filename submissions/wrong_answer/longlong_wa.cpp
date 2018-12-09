@@ -27,31 +27,35 @@ typedef pair<int,int> PII;
 #define snd second
 
 const int INF = (int)1e9;
-const ll INFLL = (int)1e18;
 const int mod = 1000000007;
 #define MAXN 101
+#define MAXS 1001
 
 
 int D[MAXN][MAXN], W[MAXN][MAXN];
-bool visited[MAXN][MAXN];
-int n, m, k;
-ll ans = INFLL;
-void completeSearch(int i, int j, ll d, int w) {
-    if (visited[i][j] || w > k) return;
-    if (i == n - 1 && j == m - 1) {
-        ans = min(ans, d); 
-        return;
+int dp[MAXN][MAXN][MAXS];
+int n, m, K;
+int ans = INF;
+int directions[2][4] = {
+    {-1, 1, 0, 0},
+    {0, 0, -1, 1}
+};
+
+int minDist(int r, int c, int k) {
+    if (k < 0) return INF;
+    if (r == 0 && c == 0) return 0;
+    if (r < 0 || c < 0 || r >= n || c >= m) return INF;
+    if (dp[r][c][k] != -1) return dp[r][c][k];
+    dp[r][c][k] = INF;
+    for (int i=0; i < 4; i++) {
+        dp[r][c][k] = min(dp[r][c][k], D[r][c] + 
+            minDist(r+directions[0][i], c+directions[1][i], k-W[r][c]));
     }
-    visited[i][j] = true;
-    if (i < n - 1) completeSearch(i+1, j, d+D[i+1][j], w+W[i+1][j]);
-    if (j < m - 1) completeSearch(i, j+1, d+D[i][j+1], w+W[i][j+1]);
-    if (i > 0) completeSearch(i-1, j, d+D[i-1][j], w+W[i-1][j]);
-    if (j > 0) completeSearch(i, j-1, d+D[i][j-1], w+W[i][j-1]);
-    visited[i][j] = false;
+    return dp[r][c][k];
 }
 
 int main() {
-    cin >> n >> m >> k;
+    cin >> n >> m >> K;
     REP(i, 0, n) {
         REP(j, 0, m) {
             cin >> D[i][j];
@@ -62,8 +66,15 @@ int main() {
             cin >> W[i][j];
         }
     }
-    completeSearch(0, 0, (ll) D[0][0], 0);
-    if (ans == INFLL) cout << -1 << endl;
+    REP(i, 0, n) {
+        REP(j, 0, m) {
+            REP(k, 0, K+1) {
+                dp[i][j][k] = -1;
+            }
+        }
+    }
+    int ans = minDist(n-1, m-1, K);
+    if (ans == INF) cout << -1 << endl;
     else cout << ans << endl;
     return 0;
 }
