@@ -47,7 +47,7 @@ for i in range(n):
 		#print("5")
 		sys.exit(5) # p out of range
 # an input validator must exit with code 42 to for success
-if (sys.stdin.readline() != ''):
+if (sys.stdin.read() != ''):
 	sys.exit(6) # junk at the end
 # print("42")
 sys.exit(42)
