@@ -15,12 +15,12 @@ if (not (n <= 100 and m <= 100 and k <= 1000)):
 
 for i in range(n):
 	nums_line = sys.stdin.readline()
-# Here we match m integers. An integer must not have leading zero.
+# Here we match n integers. An integer must not have leading zero.
 	if re.match('^(0|[1-9]\d*)( (0|[1-9]\d*)){%d}$' % (m-1), nums_line) == None:
 		#print("2")
 		sys.exit(2) # invalid distances
 
-	nums = [int(x) for x in nums_line.split(' ')]
+	nums = [int(x) for x in nums_line.strip().split(' ')]
 	if i == 0:
 		if nums[0] != 0:
 			#print("3")
@@ -32,12 +32,12 @@ for i in range(n):
 
 for i in range(n):
 	nums_line = sys.stdin.readline()
-# Here we match m integers. An integer must not have leading zero.
+# Here we match n integers. An integer must not have leading zero.
 	if re.match('^(0|[1-9]\d*)( (0|[1-9]\d*)){%d}$' % (m-1), nums_line) == None:
 		#print("4")
 		sys.exit(4) # invalid p
 
-	nums = [int(x) for x in nums_line.split(' ')]
+	nums = [int(x) for x in nums_line.strip().split(' ')]
 	if i == 0:
 		if nums[0] != 0:
 			#print("3")
@@ -47,5 +47,7 @@ for i in range(n):
 		#print("5")
 		sys.exit(5) # p out of range
 # an input validator must exit with code 42 to for success
-#print("42")
+if (sys.stdin.readline() != ''):
+	sys.exit(6) # junk at the end
+# print("42")
 sys.exit(42)
