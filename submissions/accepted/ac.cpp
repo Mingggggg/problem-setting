@@ -26,15 +26,14 @@ typedef pair<int,int> PII;
 #define fst first
 #define snd second
 
-const ll INF = (int)1e18;
+const ll INF = 1e18;
 const int mod = 1000000007;
 #define MAXN 101
 #define MAXS 1001
 
-
-ll D[MAXN][MAXN], W[MAXN][MAXN];
-ll dp[MAXN][MAXN][MAXS];
 int n, m, K;
+int D[MAXN][MAXN], W[MAXN][MAXN];
+ll dp[MAXN][MAXN][MAXS];
 ll ans = INF;
 int directions[2][4] = {
     {-1, 1, 0, 0},
