@@ -1,0 +1,29 @@
+\problemname{Manhattan Ambulance}
+When Albert Pierre Shannon (APS), a self-proclaimed utilitarian theorist, 
+first came to New York, he was swooned by the rancid smell on the street 
+and got carried over to a hospital by an ambulance. Lying on the stretcher in NYC traffic, 
+he cannot help but dream the utilitarian dream that if the ambulances can knock over some 
+pedestrians and stuff them right in, they could arrive at the hospitals faster and everyone 
+will be taken care of. Being the smart person he is, APS starts to think about how practical 
+his theory is. We know that each ambulance has a capacity k ($1 \leq k \leq 1000$),
+which means that the ambulance can carry up to k patients (not including APS). 
+Manhattan will be represented as $n*m$ grids ($n \leq 100, m \leq 100$).
+Each grid has a number d ($1 \leq d \leq 10^9$), 
+which is the distance an ambulance travels to it from any of the four neighbouring cells.
+Each grid also has p ($0 < p \leq 1000$) pedestrians, which means that, were the 
+ambulance choose to go to that cell, it would have to run over all p pedestrians 
+and carry them all to the hospital. Roads are bidirectional and the ambulances can travel
+to in all four directions.
+Your job is to find the shortest path while making sure that the ambulances 
+doesn’t have to carry more than k patients on the ambulance en route.
+
+\section*{Input}
+The first line has three integers $n$, $m$ and $k$ ($1 \leq n,m \leq 100, 1 \leq k \leq 1000$)
+The next $n$ lines of $m$ integers describe the distance you have to travel 
+in order to step onto the specific cell in the grid.
+The following $n$ lines of $m$ integers describe the number of pedestrians on that cell.
+The numbers in the first cell (i.e. $grid[0][0]$) of both grids will always be zero.
+
+\section*{Output}
+Output a single integer, the minimum distance you need to travel to get to the bottom-right cell
+without exceeding the capacity. If that's impossible, output -1.
