@@ -27,7 +27,7 @@ typedef pair<int,int> PII;
 #define snd second
 
 const int INF = (int)1e9;
-const ll INFLL = (int)1e18;
+const ll INFLL = 1e18;
 const int mod = 1000000007;
 #define MAXN 101
 
