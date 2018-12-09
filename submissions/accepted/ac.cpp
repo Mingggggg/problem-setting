@@ -32,8 +32,8 @@ const int mod = 1000000007;
 #define MAXS 1001
 
 
-int D[MAXN][MAXN], W[MAXN][MAXN];
-int dp[MAXN][MAXN][MAXS];
+ll D[MAXN][MAXN], W[MAXN][MAXN];
+ll dp[MAXN][MAXN][MAXS];
 int n, m, K;
 ll ans = INF;
 int directions[2][4] = {
@@ -48,7 +48,7 @@ ll minDist(int r, int c, int k) {
     if (dp[r][c][k] != -1) return dp[r][c][k];
     dp[r][c][k] = INF;
     for (int i=0; i < 4; i++) {
-        dp[r][c][k] = min((ll) dp[r][c][k], (ll) D[r][c] + 
+        dp[r][c][k] = min(dp[r][c][k], D[r][c] + 
             minDist(r+directions[0][i], c+directions[1][i], k-W[r][c]));
     }
     return dp[r][c][k];
@@ -73,7 +73,7 @@ int main() {
             }
         }
     }
-    int ans = minDist(n-1, m-1, K);
+    ll ans = minDist(n-1, m-1, K);
     if (ans == INF) cout << -1 << endl;
     else cout << ans << endl;
     return 0;
